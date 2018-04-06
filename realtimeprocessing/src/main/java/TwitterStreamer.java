@@ -62,6 +62,7 @@ public class TwitterStreamer {
         twitterStream.filter(new FilterQuery().track("Donald"));
     }
 
+
     public boolean checkTop(Status status){
         int followers = status.getUser().getFollowersCount();
         String user = status.getUser().getName();
