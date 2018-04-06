@@ -27,10 +27,27 @@ public class Save {
             }
 
             public void saveTweet(Status status) throws IOException {
-                String str = status.getText() ;
+
+                String str = status.getUser().getName()+';'+status.getLang()+';'+status.getText().trim().replace('\n',' ');
                 BufferedWriter writer = new BufferedWriter(new FileWriter("TweetBase.csv", true));
-                writer.append('\n');
+                //writer.append(';');
+                //String str = status.getLang();
+                //writer.append(';');
+               // String str = status.getText();
                 writer.append(str);
+                writer.append('\n');
+                writer.close();
+            }
+
+            public void saveTweet2(Status status) throws IOException {
+                String str = status.getUser().getName()+' '+status.getLang()+' '+status.getText();
+                BufferedWriter writer = new BufferedWriter(new FileWriter("TweetBase.txt", true));
+                //writer.append(';');
+                //String str = status.getLang();
+                //writer.append(';');
+                // String str = status.getText();
+                writer.append(str);
+                writer.append('\n');
                 writer.close();
             }
 
