@@ -22,7 +22,7 @@ public class Save {
                 System.out.println(status.getText());
             }
 
-            public static void saveTweet(Status status) throws IOException {
+            public void saveTweet(Status status) throws IOException {
                 String str = status.getText() ;
                 BufferedWriter writer = new BufferedWriter(new FileWriter("TweetBase.csv", true));
                 writer.append(';');
