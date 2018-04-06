@@ -27,12 +27,15 @@ public class TwitterStreamer {
         StatusListener listener = new StatusListener() {
 
             public void onStatus(Status status) {
-                //Date time = status.getCreatedAt();
-                //User user = status.getUser();
-                //String name = user.getName();
-                //int followers = user.getFollowersCount();
-                //Place place = status.getPlace();
-                //String country = place.getCountry();
+                Date time = status.getCreatedAt();
+                User user = status.getUser();
+                String name = user.getName();
+                int followers = user.getFollowersCount();
+                String language = user.getLang();
+
+                if(checkTop(status)){
+                    gui.refreshTop(top10User, top10Followers);
+                }
 
                 gui.displayTweet(status);
                 //System.out.println(status.getText());

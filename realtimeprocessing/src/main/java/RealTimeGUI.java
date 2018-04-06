@@ -33,11 +33,18 @@ public class RealTimeGUI {
     }
 
     public void displayTweet(Status status){
-        System.out.println(status.getText());
+        //System.out.println(status.getText());
     }
 
     public RealTimeGUI() {
 
+    }
+
+    public void refreshTop(String[] users, int[] followers){
+        for(int i=0; i<10; i++){
+            System.out.println((i+1) + ". " + users[i] + " - " + followers[i]);
+        }
+        System.out.println("------------------");
     }
 
 
