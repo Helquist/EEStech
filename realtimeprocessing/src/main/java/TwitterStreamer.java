@@ -5,7 +5,9 @@ import twitter4j.conf.ConfigurationBuilder;
 import java.util.Date;
 
 public class TwitterStreamer {
-    Status[] top10 = new Status[11];
+    String[] top10User = new String[11];
+    int[] top10Followers = new int[11];
+
 
 
     public void stream(final RealTimeGUI gui){
@@ -17,15 +19,20 @@ public class TwitterStreamer {
                 .setOAuthAccessTokenSecret("Pwe13QzbzbzIjAM3p6TjoXrJwEUbi0vIM5zs6Xc58GzEo") // paste your OAUTH_ACCESS_TOKEN
                 .build();
 
+        for(int i=0; i<11; i++){
+            top10User[i]="";
+            top10Followers[i]=0;
+        }
+
         StatusListener listener = new StatusListener() {
 
             public void onStatus(Status status) {
-                Date time = status.getCreatedAt();
-                User user = status.getUser();
-                String name = user.getName();
-                int followers = user.getFollowersCount();
-                Place place = status.getPlace();
-                String country = place.getCountry();
+                //Date time = status.getCreatedAt();
+                //User user = status.getUser();
+                //String name = user.getName();
+                //int followers = user.getFollowersCount();
+                //Place place = status.getPlace();
+                //String country = place.getCountry();
 
                 gui.displayTweet(status);
                 //System.out.println(status.getText());
@@ -57,30 +64,29 @@ public class TwitterStreamer {
 
     public boolean checkTop(Status status){
         int followers = status.getUser().getFollowersCount();
+        String user = status.getUser().getName();
 
-        if(followers<top10[9].getUser().getFollowersCount())
+        if(followers<top10Followers[9])
             return false;
-
-        for(int i=0; i<10; i++){
-            if(status.getUser().getName().equals(top10[i].getUser().getName())){
-                return false;
-            }
-        }
-
-
-        for(int i=9; i>=0; i--){
-            if(followers>=top10[i].getUser().getFollowersCount()){
-                top10[i+1]=top10[i];
-                top10[i]=status;
-            } else {
-                return true;
+        else {
+            for(int i=0; i<10; i++){
+                if(status.getUser().getName().equals(top10User[i])){
+                    return false;
+                }
             }
 
+            for(int i=9; i>=0; i--){
+                if(followers>=top10Followers[i]){
+                    top10User[i+1]=top10User[i];
+                    top10User[i]=user;
+                    top10Followers[i+1]=top10Followers[i];
+                    top10Followers[i]=followers;
+                } else {
+                    return true;
+                }
+            }
         }
-
-
-        re
-
+        return true;
     }
 
 }
