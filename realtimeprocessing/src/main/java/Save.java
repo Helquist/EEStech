@@ -2,6 +2,10 @@ import twitter4j.*;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Save {
     public static void main(String[] args) {
         final Configuration configuration = new ConfigurationBuilder()
@@ -16,9 +20,14 @@ public class Save {
             public void onStatus(Status status) {
 
                 System.out.println(status.getText());
+            }
 
-
-
+            public static void saveTweet(Status status) throws IOException {
+                String str = status.getText() ;
+                BufferedWriter writer = new BufferedWriter(new FileWriter("TweetBase.csv", true));
+                writer.append(';');
+                writer.append(str);
+                writer.close();
             }
 
             public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
