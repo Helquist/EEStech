@@ -18,14 +18,18 @@ public class Save {
         StatusListener listener = new StatusListener() {
 
             public void onStatus(Status status) {
-
+                try {
+                    saveTweet(status);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 System.out.println(status.getText());
             }
 
             public void saveTweet(Status status) throws IOException {
                 String str = status.getText() ;
                 BufferedWriter writer = new BufferedWriter(new FileWriter("TweetBase.csv", true));
-                writer.append(';');
+                writer.append('\n');
                 writer.append(str);
                 writer.close();
             }
