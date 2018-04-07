@@ -28,10 +28,8 @@ public class RealTimeGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
-
-
-
+        streamTextArea.setLineWrap(true);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
 
