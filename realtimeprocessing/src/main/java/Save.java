@@ -73,6 +73,6 @@ public class Save {
 
         TwitterStream twitterStream = new TwitterStreamFactory(configuration).getInstance();
         twitterStream.addListener(listener);
-        twitterStream.filter(new FilterQuery().track("Russia", "UK", "USA", "TRUMP", "Terrorist", "Vegan"));
+        twitterStream.filter(new FilterQuery().track("Russia", "UK", "USA", "TRUMP", "Terrorist", "Vegan", "China", "Facebook"));
     }
 }

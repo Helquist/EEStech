@@ -18,7 +18,6 @@ public class BatchRunner {
         sparkConf.set("spark.cassandra.connection.host", "localhost");
         sparkConf.set("spark.cassandra.connection.port", "9042");
 
-
         SparkContext sparkContext = new SparkContext(sparkConf);
 
         exampleJob(sparkConf, sparkContext);
