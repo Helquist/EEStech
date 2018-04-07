@@ -67,3 +67,4 @@ onlyifchanged-*.json
 npm-debug.log
 
 logs/
+realtimeprocessing/src/main/java/RealTimeGUI.java
