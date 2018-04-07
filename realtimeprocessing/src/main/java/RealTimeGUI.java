@@ -2,6 +2,7 @@ import javax.swing.*;
 
 import twitter4j.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class RealTimeGUI {
@@ -11,10 +12,10 @@ public class RealTimeGUI {
     private JPanel graphPanel;
     private JTextPane top10user;
     private JTextPane top10followers;
-    private JTextPane streamTextfield;
     private JTextPane textWord1;
     private JTextPane textWord2;
     private JTextPane textWord3;
+    private JTextArea streamTextArea;
 
 
     public static void main(String[] args) {
@@ -27,9 +28,8 @@ public class RealTimeGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
-
-
+        streamTextArea.setLineWrap(true);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
 
@@ -39,17 +39,19 @@ public class RealTimeGUI {
     }
 
     public void displayTweet(Status status){
+        streamTextArea.append(status.getText());
+        streamTextArea.setCaretPosition(streamTextArea.getDocument().getLength());
 
     }
 
     public void refreshTop(String[] users, int[] followers){
 
-        if(false) {
+        /*
             for (int i = 0; i < 10; i++) {
                 System.out.println((i + 1) + ". " + users[i] + " - " + followers[i]);
             }
             System.out.println("------------------");
-        }
+        */
 
         String top10u = "";
         String top10f = "";
@@ -59,8 +61,6 @@ public class RealTimeGUI {
         }
         top10user.setText(top10u);
         top10followers.setText(top10f);
-
-
 
     }
 

@@ -23,7 +23,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="71f59" class="javax.swing.JTextPane" binding="streamTextfield">
+              <component id="fc4b2" class="javax.swing.JTextArea" binding="streamTextArea">
                 <constraints/>
                 <properties/>
               </component>
