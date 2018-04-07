@@ -1,3 +1,10 @@
+
+
+
+// To rebuilt !!!
+
+
+/*
 import twitter4j.*;
 import org.testng.annotations.ITestOrConfiguration;
 import twitter4j.conf.ConfigurationBuilder;
@@ -6,7 +13,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-
 public class Read {
     public void readTweetBasecsv()throws IOException,ClassNotFoundException{
         String name= "TweetBase.bin";
@@ -24,3 +30,4 @@ public class Read {
         }
     }
 }
+*/

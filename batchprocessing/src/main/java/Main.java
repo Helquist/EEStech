@@ -2,6 +2,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
+        /*
         Read read = new Read();
         try {
             read.readTweetBasecsv();
@@ -10,5 +11,6 @@ public class Main {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        */
     }
 }
