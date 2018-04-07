@@ -30,6 +30,9 @@ public class RealTimeGUI {
         frame.setVisible(true);
         streamTextArea.setLineWrap(true);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        Dimension streamDim = Toolkit.getDefaultToolkit().getScreenSize();
+        streamDim.setSize(streamDim.getWidth()*0.75,streamDim.getHeight());
+        top10Panel.setSize(streamDim);
     }
 
 
@@ -40,8 +43,9 @@ public class RealTimeGUI {
 
     public void displayTweet(Status status){
         streamTextArea.append(status.getText());
-        //streamTextArea.setCaretPosition(streamTextArea.getDocument().getLength());
-
+        if(streamTextArea.hasFocus()==false){
+            streamTextArea.setCaretPosition(streamTextArea.getDocument().getLength());
+        }
     }
 
     public void refreshTop(String[] users, int[] followers){
