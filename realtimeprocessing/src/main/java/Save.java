@@ -27,8 +27,7 @@ public class Save {
             }
 
             public void saveTweet(Status status) throws IOException {
-
-                String str = status.getUser().getName()+';'+status.getLang()+';'+status.getText().trim().replace('\n',' ');
+                String str = status.getUser().getName().replace(';',' ').trim()+';'+status.getLang()+';'+status.getText().replace(';',' ').replace('\n',' ');
                 BufferedWriter writer = new BufferedWriter(new FileWriter("TweetBase.csv", true));
                 writer.append(str);
                 writer.append('\n');
@@ -56,7 +55,7 @@ public class Save {
 
         TwitterStream twitterStream = new TwitterStreamFactory(configuration).getInstance();
         twitterStream.addListener(listener);
-        twitterStream.filter(new FilterQuery().track("DUDA", "UK", "USA"));
+        twitterStream.filter(new FilterQuery().track("Russia", "UK", "USA"));
 
 
     }
