@@ -1,7 +1,6 @@
 import twitter4j.*;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
-
 import java.io.*;
 
 public class Save {
@@ -30,7 +29,7 @@ public class Save {
             }
 
             public void saveTweet(Status status) throws IOException {
-                String str = status.getUser().getCreatedAt()+status.getUser().getName().replace(';',' ').trim()+';'+status.getLang()+';'+status.getText().replace(';',' ').replace('\n',' ');
+                String str = status.getUser().getCreatedAt()+" "+';'+status.getUser().getName().replace(';',' ').trim()+';'+status.getLang()+';'+status.getText().replace(';',' ').replace('\n',' ');
                 BufferedWriter writer = new BufferedWriter(new FileWriter("TweetBase.csv", true));
                 writer.append(str);
                 writer.append('\n');

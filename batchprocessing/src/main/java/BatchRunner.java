@@ -21,7 +21,6 @@ public class BatchRunner {
         SparkContext sparkContext = new SparkContext(sparkConf);
 
         exampleJob(sparkConf, sparkContext);
-
     }
 
     public static void exampleJob(SparkConf sparkConf, SparkContext sparkContext) {

@@ -48,15 +48,15 @@ public class RealTimeGUI {
 
     public void displayTweet(Status status){
         streamTextArea.append(status.getText());
-<<<<<<< HEAD
+
 
         //streamTextArea.setCaretPosition(streamTextArea.getDocument().getLength());
 
-=======
+
         if(streamTextArea.hasFocus()==false){
             streamTextArea.setCaretPosition(streamTextArea.getDocument().getLength());
         }
->>>>>>> a2606e6d60b780a3e5f540d3681636695c2f6111
+
     }
 
     public void refreshTop(String[] users, int[] followers){
