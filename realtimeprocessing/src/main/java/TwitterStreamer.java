@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class TwitterStreamer {
     TwitterStream twitterStream;
-    String w1 = "facebook";
+    String w1 = "Facebook";
     String w2 = "Donald";
     String w3 = "China";
 
