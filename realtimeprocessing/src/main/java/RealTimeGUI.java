@@ -3,6 +3,9 @@ import javax.swing.*;
 import twitter4j.*;
 
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 
 public class RealTimeGUI {
@@ -36,10 +39,13 @@ public class RealTimeGUI {
 
     public RealTimeGUI() {
 
+
+
     }
 
     public void displayTweet(Status status){
         streamTextArea.append(status.getText());
+
         //streamTextArea.setCaretPosition(streamTextArea.getDocument().getLength());
 
     }
