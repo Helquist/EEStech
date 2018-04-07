@@ -2,9 +2,7 @@ import twitter4j.*;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class Save {
     public static void main(String[] args) {
@@ -23,15 +21,35 @@ public class Save {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                try {
+                    saveTweet2(status);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 System.out.println(status.getText());
             }
 
             public void saveTweet(Status status) throws IOException {
-                String str = status.getUser().getName().replace(';',' ').trim()+';'+status.getLang()+';'+status.getText().replace(';',' ').replace('\n',' ');
+                String str = status.getUser().getCreatedAt()+status.getUser().getName().replace(';',' ').trim()+';'+status.getLang()+';'+status.getText().replace(';',' ').replace('\n',' ');
                 BufferedWriter writer = new BufferedWriter(new FileWriter("TweetBase.csv", true));
                 writer.append(str);
                 writer.append('\n');
                 writer.close();
+            }
+
+            public void saveTweet2(Status status)throws IOException{
+                ObjectOutputStream tosave = null;
+                try {
+                    String Base = "TweetBase.bin";
+                    tosave = new ObjectOutputStream(new FileOutputStream(Base));
+                    tosave.writeObject(status);
+                }catch (IOException ex) {
+                    System.out.println("Blad w zapisie do pliku Tweetbase.bin");
+                }
+                finally {
+                    if(tosave!=null)
+                        tosave.close();
+                }
             }
 
             public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
@@ -55,8 +73,6 @@ public class Save {
 
         TwitterStream twitterStream = new TwitterStreamFactory(configuration).getInstance();
         twitterStream.addListener(listener);
-        twitterStream.filter(new FilterQuery().track("Russia", "UK", "USA"));
-
-
+        twitterStream.filter(new FilterQuery().track("Russia", "UK", "USA", "TRUMP", "Terrorist", "Vegan"));
     }
 }
