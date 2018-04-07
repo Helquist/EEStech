@@ -42,13 +42,37 @@ public class TwitterStreamer {
                 String language = user.getLang();
 
                 if(text.contains(w1)) {
-                    checkLanguage(language);
+                    if (languages1.contains(language)) {
+                        int pos = languages1.indexOf(language);
+                        int tw = noOfTweets1.get(pos);
+                        noOfTweets1.remove(pos);
+                        noOfTweets1.add(pos, tw + 1);
+                    } else {
+                        languages1.add(language);
+                        noOfTweets1.add(1);
+                    }
                     gui.refreshLang(languages1, noOfTweets1, 1, w1);
                 } else if(text.contains(w2)){
-                    checkLanguage(language);
+                    if (languages2.contains(language)) {
+                        int pos = languages2.indexOf(language);
+                        int tw = noOfTweets2.get(pos);
+                        noOfTweets2.remove(pos);
+                        noOfTweets2.add(pos, tw + 1);
+                    } else {
+                        languages2.add(language);
+                        noOfTweets2.add(1);
+                    }
                     gui.refreshLang(languages2, noOfTweets2, 2, w2);
                 } else if(text.contains(w3)){
-                    checkLanguage(language);
+                    if (languages3.contains(language)) {
+                        int pos = languages3.indexOf(language);
+                        int tw = noOfTweets3.get(pos);
+                        noOfTweets3.remove(pos);
+                        noOfTweets3.add(pos, tw + 1);
+                    } else {
+                        languages3.add(language);
+                        noOfTweets3.add(1);
+                    }
                     gui.refreshLang(languages3, noOfTweets3, 3, w3);
                 }
 
@@ -58,18 +82,6 @@ public class TwitterStreamer {
 
                 gui.displayTweet(status);
 
-            }
-
-            private void checkLanguage(String language){
-                if (languages3.contains(language)) {
-                    int pos = languages3.indexOf(language);
-                    int tw = noOfTweets3.get(pos);
-                    noOfTweets3.remove(pos);
-                    noOfTweets3.add(pos, tw + 1);
-                } else {
-                    languages3.add(language);
-                    noOfTweets3.add(1);
-                }
             }
 
             public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
