@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class TwitterStreamer {
+    TwitterStream twitterStream;
     String w1 = "facebook";
     String w2 = "Donald";
     String w3 = "China";
@@ -107,9 +108,13 @@ public class TwitterStreamer {
         };
 
 
-        TwitterStream twitterStream = new TwitterStreamFactory(configuration).getInstance();
+        twitterStream = new TwitterStreamFactory(configuration).getInstance();
         twitterStream.addListener(listener);
         twitterStream.filter(new FilterQuery().track(w1, w2, w3));
+    }
+
+    public void stop(){
+        twitterStream.shutdown();
     }
 
 
