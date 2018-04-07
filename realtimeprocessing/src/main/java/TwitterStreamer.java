@@ -1,7 +1,6 @@
 import twitter4j.*;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
-
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -48,7 +47,6 @@ public class TwitterStreamer {
                         int tw = noOfTweets1.get(pos);
                         noOfTweets1.remove(pos);
                         noOfTweets1.add(pos, tw + 1);
-
                     } else {
                         languages1.add(language);
                         noOfTweets1.add(1);
@@ -60,7 +58,6 @@ public class TwitterStreamer {
                         int tw = noOfTweets2.get(pos);
                         noOfTweets2.remove(pos);
                         noOfTweets2.add(pos, tw + 1);
-
                     } else {
                         languages2.add(language);
                         noOfTweets2.add(1);
@@ -72,7 +69,6 @@ public class TwitterStreamer {
                         int tw = noOfTweets3.get(pos);
                         noOfTweets3.remove(pos);
                         noOfTweets3.add(pos, tw + 1);
-
                     } else {
                         languages3.add(language);
                         noOfTweets3.add(1);
