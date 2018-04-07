@@ -40,7 +40,7 @@ public class RealTimeGUI {
 
     public void displayTweet(Status status){
         streamTextArea.append(status.getText());
-        streamTextArea.setCaretPosition(streamTextArea.getDocument().getLength());
+        //streamTextArea.setCaretPosition(streamTextArea.getDocument().getLength());
 
     }
 
