@@ -1,18 +1,20 @@
 import javax.swing.*;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 import twitter4j.*;
-import twitter4j.conf.Configuration;
-import twitter4j.conf.ConfigurationBuilder;
 
-import java.awt.*;
+import java.util.ArrayList;
 
 public class RealTimeGUI {
     private JPanel mainPanel;
     private JPanel streamPanel;
-    private JScrollPane twitterScrollPane;
+    private JPanel top10Panel;
+    private JPanel graphPanel;
+    private JTextPane top10user;
+    private JTextPane top10followers;
+    private JTextPane streamTextfield;
+    private JTextPane textWord1;
+    private JTextPane textWord2;
+    private JTextPane textWord3;
 
 
     public static void main(String[] args) {
@@ -21,30 +23,73 @@ public class RealTimeGUI {
 
     public void start(){
         JFrame frame = new JFrame("RealTimeGUI");
-        frame.setContentPane(new RealTimeGUI().mainPanel);
+        frame.setContentPane(this.mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
 
 
-
-
     }
 
-    public void displayTweet(Status status){
-        //System.out.println(status.getText());
-    }
+
 
     public RealTimeGUI() {
 
     }
 
+    public void displayTweet(Status status){
+
+    }
+
     public void refreshTop(String[] users, int[] followers){
-        for(int i=0; i<10; i++){
-            System.out.println((i+1) + ". " + users[i] + " - " + followers[i]);
+
+        if(false) {
+            for (int i = 0; i < 10; i++) {
+                System.out.println((i + 1) + ". " + users[i] + " - " + followers[i]);
+            }
+            System.out.println("------------------");
         }
-        System.out.println("------------------");
+
+        String top10u = "";
+        String top10f = "";
+        for(int i=0; i<10; i++){
+            top10u = top10u + (i+1) + " - " + users[i] + "\n";
+            top10f = top10f + followers[i] + "\n";
+        }
+        top10user.setText(top10u);
+        top10followers.setText(top10f);
+
+
+
+    }
+
+    public void refreshLang(ArrayList<String> languages, ArrayList<Integer> noOfTweets, int word, String w){
+        if(word == 1){
+            int N= languages.size();
+            String str = w + '\n';
+            for(int i =0; i<N; i++){
+                str = str + languages.get(i) + "\t" + noOfTweets.get(i) + "\n";
+            }
+            textWord1.setText(str);
+        } else if(word==2){
+            int N= languages.size();
+            String str = w + '\n';
+            for(int i =0; i<N; i++){
+                str = str + languages.get(i) + "\t" + noOfTweets.get(i) + "\n";
+            }
+            textWord2.setText(str);
+
+        } else if(word==3){
+
+            int N= languages.size();
+            String str = w + '\n';
+            for(int i =0; i<N; i++){
+                str = str + languages.get(i) + "\t" + noOfTweets.get(i) + "\n";
+            }
+            textWord3.setText(str);
+        }
+
     }
 
 

@@ -2,13 +2,23 @@ import twitter4j.*;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class TwitterStreamer {
+    String w1 = "facebook";
+    String w2 = "Donald";
+    String w3 = "China";
+
     String[] top10User = new String[11];
     int[] top10Followers = new int[11];
 
-
+    private ArrayList<String> languages1 = new ArrayList<String>();
+    private ArrayList<Integer> noOfTweets1 = new ArrayList<Integer>();
+    private ArrayList<String> languages2 = new ArrayList<String>();
+    private ArrayList<Integer> noOfTweets2 = new ArrayList<Integer>();
+    private ArrayList<String> languages3 = new ArrayList<String>();
+    private ArrayList<Integer> noOfTweets3 = new ArrayList<Integer>();
 
     public void stream(final RealTimeGUI gui){
         final Configuration configuration = new ConfigurationBuilder()
@@ -27,18 +37,54 @@ public class TwitterStreamer {
         StatusListener listener = new StatusListener() {
 
             public void onStatus(Status status) {
-                Date time = status.getCreatedAt();
+                String text = status.getText();
                 User user = status.getUser();
-                String name = user.getName();
-                int followers = user.getFollowersCount();
                 String language = user.getLang();
+
+                if(text.contains(w1)) {
+                    if (languages1.contains(language)) {
+                        int pos = languages1.indexOf(language);
+                        int tw = noOfTweets1.get(pos);
+                        noOfTweets1.remove(pos);
+                        noOfTweets1.add(pos, tw + 1);
+
+                    } else {
+                        languages1.add(language);
+                        noOfTweets1.add(1);
+                    }
+                    gui.refreshLang(languages1, noOfTweets1, 1, w1);
+                } else if(text.contains(w2)){
+                    if (languages2.contains(language)) {
+                        int pos = languages2.indexOf(language);
+                        int tw = noOfTweets2.get(pos);
+                        noOfTweets2.remove(pos);
+                        noOfTweets2.add(pos, tw + 1);
+
+                    } else {
+                        languages2.add(language);
+                        noOfTweets2.add(1);
+                    }
+                    gui.refreshLang(languages2, noOfTweets2, 2, w2);
+                } else if(text.contains(w3)){
+                    if (languages3.contains(language)) {
+                        int pos = languages3.indexOf(language);
+                        int tw = noOfTweets3.get(pos);
+                        noOfTweets3.remove(pos);
+                        noOfTweets3.add(pos, tw + 1);
+
+                    } else {
+                        languages3.add(language);
+                        noOfTweets3.add(1);
+                    }
+                    gui.refreshLang(languages3, noOfTweets3, 3, w3);
+                }
 
                 if(checkTop(status)){
                     gui.refreshTop(top10User, top10Followers);
                 }
 
                 gui.displayTweet(status);
-                //System.out.println(status.getText());
+
             }
 
             public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
@@ -60,9 +106,10 @@ public class TwitterStreamer {
             }
         };
 
+
         TwitterStream twitterStream = new TwitterStreamFactory(configuration).getInstance();
         twitterStream.addListener(listener);
-        twitterStream.filter(new FilterQuery().track("Donald"));
+        twitterStream.filter(new FilterQuery().track(w1, w2, w3));
     }
 
 
